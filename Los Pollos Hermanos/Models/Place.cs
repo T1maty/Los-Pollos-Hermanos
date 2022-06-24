@@ -10,5 +10,6 @@
         public double Longitude { get; set; }
         public DateTime CreatedUtc { get; set; }
         public DateTime UpdatedUtc { get; set; }
+        public virtual List<Menu> Menus { get; set; }
     }
 }

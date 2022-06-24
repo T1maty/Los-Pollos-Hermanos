@@ -21,10 +21,13 @@ namespace Los_Pollos_Hermanos.Models
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Menu>(entity =>
             {
-                entity.HasOne(pl => pl.User).WithMany(u => u.Places).HasForeignKey(pl => pl.UserId);
-
+                entity.HasOne(pl => pl.User).WithMany(u => u.Menus).HasForeignKey(pl => pl.UserId);
             });
-
+            modelBuilder.Entity<Place>(entity =>
+            {
+                entity.HasOne(t => t.Menus).WithMany(pl => pl.Places).HasForeignKey(t => t.PlaceId);
+            });
+           
         }
     }
 }
