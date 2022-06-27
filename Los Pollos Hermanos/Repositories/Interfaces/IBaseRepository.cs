@@ -12,6 +12,6 @@ namespace Los_Pollos_Hermanos.Repositories.Interfaces
 
         Task<TModel> GetByAsync(Func<TModel, bool> filter);
         Task<List<TModel>> GetAllAsync();
-        Task<List<TModel>> GetAllAsync(Func<TModel, bool> filter)
+        Task<List<TModel>> GetAllAsync(Func<TModel, bool> filter);
     }
 }
