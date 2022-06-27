@@ -5,9 +5,12 @@
 
 
         public string Name { get; set; }
-        public DateTime? Discount { get; set; }
+        public string Type { get; set; }
         public int Price { get; set; }
-        public int UserId { get; set; } 
+        public virtual Table Table { get; set; } 
+        public virtual User User { get; set; }
+        public int UserId { get; set; }
+     
         
     }
 }

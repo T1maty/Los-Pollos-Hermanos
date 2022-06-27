@@ -10,7 +10,7 @@ namespace Los_Pollos_Hermanos.Models
         public string LastName { get; set; }   
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public virtual List<Menu> Menus { get; set; }
+        public  List<Menu> Menus { get; set; }
          
     }
 }

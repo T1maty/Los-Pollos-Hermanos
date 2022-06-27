@@ -13,8 +13,8 @@ namespace Los_Pollos_Hermanos.Models
 
         }
         public  override DbSet<User> Users { get; set; }
-        public DbSet<Place> Places { get; set; }
         public DbSet<Menu> Menus { get; set; }
+        public DbSet<Table> Tables { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,11 +23,7 @@ namespace Los_Pollos_Hermanos.Models
             {
                 entity.HasOne(pl => pl.User).WithMany(u => u.Menus).HasForeignKey(pl => pl.UserId);
             });
-            modelBuilder.Entity<Place>(entity =>
-            {
-                entity.HasOne(t => t.Menus).WithMany(pl => pl.Places).HasForeignKey(t => t.PlaceId);
-            });
-           
+          
         }
     }
 }
