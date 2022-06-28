@@ -11,5 +11,6 @@ namespace Los_Pollos_Hermanos.Services.Interfaces
         Task<T> GetByIdAsync(int id);
         Task<List<T>> GetAllAsync();
         Task<bool> DeleteAsync(int id);
+        Task<UserApiModel> GetUserByUserEmail(string email);
     }
 }

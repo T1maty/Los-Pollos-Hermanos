@@ -1,5 +1,4 @@
 ﻿using Los_Pollos_Hermanos.ApiModels;
-using Los_Pollos_Hermanos.ApiModels;
 using Los_Pollos_Hermanos.ApiModels.RequestModels;
 using Los_Pollos_Hermanos.Models;
 using Los_Pollos_Hermanos.Services.Interfaces;
@@ -12,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Los_Pollos_Hermanos.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    [Route("api/[controller]/[action]")]
+    public class UserController : Controller
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;

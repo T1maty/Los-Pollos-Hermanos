@@ -47,6 +47,11 @@ namespace Los_Pollos_Hermanos.Services
             return res == null ? null : _mapper.Map<TApiModel>(res);
         }
 
+        public Task<UserApiModel> GetUserByUserEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<CreateUpdate<TApiModel>> UpdateAsync(TApiModel model)
         {
             var res = await _repository.UpdateAsync(_mapper.Map<TModel>(model));
