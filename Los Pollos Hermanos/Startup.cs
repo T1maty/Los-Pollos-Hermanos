@@ -1,19 +1,14 @@
-﻿using Los_Pollos_Hermanos.Helpers;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Los_Pollos_Hermanos.Helpers.Seed;
+﻿using Los_Pollos_Hermanos.Helpers.Seed;
 using AutoMapper;
 using Los_Pollos_Hermanos.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
-
-using Los_Pollos_Hermanos.Repositories.Interfaces;
 using Los_Pollos_Hermanos.Services;
 using Los_Pollos_Hermanos.Services.Interfaces;
+using Amazon.DynamoDBv2.DataModel;
+using Amazon.DynamoDBv2;
+using Amazon.Runtime;
 
 namespace Los_Pollos_Hermanos
 {
@@ -46,7 +41,16 @@ namespace Los_Pollos_Hermanos
             });
             services.AddMvc();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IBaseService, BaseService>();
+
+            var credendtials = new BasicAWSCredentials("", "");
+            var config = new AmazonDynamoDBConfig()
+            {
+                RegionEndpoint = Amazon.RegionEndpoint.APSoutheast2
+            };
+
+            var client = new AmazonDynamoDBClient(credentials, config);
+            services.AddSingleton<IAmazonDynamoDB>(client);
+            services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
 
 
             services.AddIdentity<User, AppRole>(options =>

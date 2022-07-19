@@ -1,4 +1,5 @@
-﻿using Los_Pollos_Hermanos.ApiModels;
+﻿using Amazon.DynamoDBv2.DataModel;
+using Los_Pollos_Hermanos.ApiModels;
 using Los_Pollos_Hermanos.ApiModels.RequestModels;
 using Los_Pollos_Hermanos.Models;
 using Los_Pollos_Hermanos.Services.Interfaces;
@@ -19,6 +20,21 @@ namespace Los_Pollos_Hermanos.Controllers
         private readonly UserManager<User> _userManager;
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
+        private  readonly IDynamoDBContext _dynamoDbContext;
+
+        public UserController(IDynamoDBContext dynamoDBContext)
+        {
+            _dynamoDbContext = dynamoDBContext;
+        }
+        [HttpGet]
+        public async Task<IEnumerable<User>> Get(string user = "Ivan")
+        {
+           return await _dynamoDbContext
+                .QueryAsync<User>(user)
+                .GetRemainingAsync();
+        }
+
+
         public UserController(SignInManager<User> signInManager, UserManager<User> userManager, IUserService userService, IConfiguration configuration)
         {
             this._signInManager = signInManager;
