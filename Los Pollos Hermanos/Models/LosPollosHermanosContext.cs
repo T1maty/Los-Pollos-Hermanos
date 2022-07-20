@@ -5,25 +5,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Los_Pollos_Hermanos.Models
 {
-    public class LosPollosHermanosContext : IdentityDbContext<User,AppRole,int>
+    public class LosPollosHermanosContext : IdentityDbContext<User, AppRole, int>
     {
         public LosPollosHermanosContext(DbContextOptions<LosPollosHermanosContext> options)
             : base(options)
         {
 
         }
-        public  override DbSet<User> Users { get; set; }
+        public override DbSet<User> Users { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Table> Tables { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Menu>(entity =>
-            {
-                entity.HasOne(pl => pl.User).WithMany(u => u.Menus).HasForeignKey(pl => pl.UserId);
-            });
-          
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder
+                .UseSqlServer("Server=.\\SQLExpress;Database=userdb;Trusted_Connection=true;");
         }
+
     }
 }
+
+    
+    
+
