@@ -42,13 +42,15 @@ namespace Los_Pollos_Hermanos
             services.AddMvc();
             services.AddScoped<IUserService, UserService>();
 
-            var credendtials = new BasicAWSCredentials("", "");
+            var credentials = new BasicAWSCredentials("AKIAQHDVK3SNBYZCF2VW", "AKIAQHDVK3SNN34QTWMN");
             var config = new AmazonDynamoDBConfig()
             {
                 RegionEndpoint = Amazon.RegionEndpoint.APSoutheast2
             };
 
-            var client = new AmazonDynamoDBClient(credentials, config);
+           var client = new AmazonDynamoDBClient(credentials, config);
+           
+            services.AddSingleton<IAmazonDynamoDB>(client);
             services.AddSingleton<IAmazonDynamoDB>(client);
             services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
 
