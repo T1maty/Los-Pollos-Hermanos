@@ -1,4 +1,5 @@
-using Los_Pollos_Hermanos.Data;
+
+using Los_Pollos_Hermanos.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<DataContext>();
+builder.Services.AddDbContext<LosPollosHermanosContext>();
 var app = builder.Build();
 
 

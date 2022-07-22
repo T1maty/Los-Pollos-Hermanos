@@ -6,8 +6,7 @@
 
         public string Name { get; set; }
         public string Type { get; set; }
-        public int Price { get; set; }
-        public virtual Table Table { get; set; } 
+        public int Price { get; set; } 
         public virtual User User { get; set; }
         public int UserId { get; set; }
      
